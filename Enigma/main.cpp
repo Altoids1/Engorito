@@ -17,32 +17,32 @@ namespace Rotors
 
 	They're put into this namespace so that the rest of the code can use single-character variable names w/o overriding these.
 	*/
-	const char a = 1;
-	const char b = 2;
-	const char c = 3;
-	const char d = 4;
-	const char e = 5;
-	const char f = 6;
-	const char g = 7;
-	const char h = 8;
-	const char i = 9;
-	const char j = 10;
-	const char k = 11;
-	const char l = 12;
-	const char m = 13;
-	const char n = 14;
-	const char o = 15;
-	const char p = 16;
-	const char q = 17;
-	const char r = 18;
-	const char s = 19;
-	const char t = 20;
-	const char u = 21;
-	const char v = 22;
-	const char w = 23;
-	const char x = 24;
-	const char y = 25;
-	const char z = 26;
+	const char a = 0;
+	const char b = 1;
+	const char c = 2;
+	const char d = 3;
+	const char e = 4;
+	const char f = 5;
+	const char g = 6;
+	const char h = 7;
+	const char i = 8;
+	const char j = 9;
+	const char k = 10;
+	const char l = 11;
+	const char m = 12;
+	const char n = 13;
+	const char o = 14;
+	const char p = 15;
+	const char q = 16;
+	const char r = 17;
+	const char s = 18;
+	const char t = 19;
+	const char u = 20;
+	const char v = 21;
+	const char w = 22;
+	const char x = 23;
+	const char y = 24;
+	const char z = 25;
 
 	char wheels[][26] = {
 		{e, k, m, f, l, g, d, q, v, z, n, t, o, w, y, h, x, u, s, p, a, i, b, r, c, j}, // rotor I
