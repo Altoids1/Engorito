@@ -6,8 +6,7 @@ GOAL:
 
 */
 
-#include <iostream>
-#include <string>
+#include "plugboard.h"
 
 namespace Rotors
 {
@@ -114,7 +113,11 @@ int main(int argc, char** argv) // Later on we'll be able to take arguments; rig
 {
 	Enigma eng;
 
+
 	std::cout << eng.print_configuration();
+
+	
+
 
 	return 0;
 }
