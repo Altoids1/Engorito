@@ -139,12 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="enigmaMachine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="plugboard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="enigmaMachine.h" />
     <ClInclude Include="forward.h" />
     <ClInclude Include="plugboard.h" />
+    <ClInclude Include="rotors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

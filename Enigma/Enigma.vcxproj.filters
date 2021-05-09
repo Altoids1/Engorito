@@ -21,12 +21,21 @@
     <ClCompile Include="plugboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="enigmaMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enigmaMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rotors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
