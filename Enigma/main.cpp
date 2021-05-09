@@ -114,7 +114,7 @@ class Enigma
 	//We do that rotation here.
 	{
 		offset[0] = (offset[0] + 1) % 26;
-		if (offset[2] == Rotors::notch[r0]) // If we're at the point that we make the 2nd rotor turn
+		if (offset[0] == Rotors::notch[r0]) // If we're at the point that we make the 2nd rotor turn
 		{
 			offset[1] = (offset[1] + 1) % 26; // Do that
 			if (offset[1] == Rotors::notch[r1]) // If we're at the point that we make the THIRD rotor turn
@@ -148,15 +148,21 @@ public:
 		printf("Rotors position: %c%c%c\n", Rotors::to_char(offset[2]), Rotors::to_char(offset[1]), Rotors::to_char(offset[0]));
 #endif
 		//Passes through each rotor
-		button = Rotors::forwardrotors[r0][(button + (26 - offset[0])) % 26];
+		button = (button + offset[0]) % 26; // Move button FORWARD when you go in
+		button = Rotors::forwardrotors[r0][button];
+		button = (button + (26 - offset[0])) % 26; // and move it BACKWARD when you go out
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 3 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
-		button = Rotors::forwardrotors[r1][(button + (26 - offset[1])) % 26];
+		button = (button + offset[1]) % 26; // Move button FORWARD when you go in
+		button = Rotors::forwardrotors[r1][button];
+		button = (button + (26 - offset[1])) % 26; // and move it BACKWARD when you go out
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 2 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
-		button = Rotors::forwardrotors[r2][(button + (26 - offset[2])) % 26];
+		button = (button + offset[2]) % 26; // Move button FORWARD when you go in
+		button = Rotors::forwardrotors[r2][button];
+		button = (button + (26 - offset[2])) % 26; // and move it BACKWARD when you go out
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 1 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
@@ -169,15 +175,21 @@ public:
 #endif
 
 		//Passes through each rotor, in reverse order
-		button = Rotors::backwardrotors[r2][(button + offset[2]) % 26];
+		button = (button + offset[2]) % 26; // Move button FORWARD when you go in
+		button = Rotors::backwardrotors[r2][button]; //
+		button = (button + (26 - offset[2])) % 26; // and move it BACKWARD when you go out
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 1 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
-		button = Rotors::backwardrotors[r1][(button + offset[1]) % 26];
+		button = (button + offset[1]) % 26; // Move button FORWARD when you go in
+		button = Rotors::backwardrotors[r1][button];
+		button = (button + (26 - offset[1])) % 26;
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 2 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
-		button = Rotors::backwardrotors[r0][(button + offset[0]) % 26];
+		button = (button + offset[0]) % 26;
+		button = Rotors::backwardrotors[r0][button];
+		button = (button + (26 - offset[0])) % 26;
 #ifdef LOUD_ENIGMA
 		std::cout << "Wheel 3 Encryption: " << Rotors::to_char(button) << std::endl;
 #endif
@@ -185,14 +197,14 @@ public:
 		//TODO: Put it through the plugboards again, over here
 		
 #ifdef LOUD_ENIGMA
-		std::cout << "Output (Lampboard): " << Rotors::to_char(button) << std::endl;
+		std::cout << "Output (Lampboard): " << Rotors::to_char(button) << std::endl << "--------------------------\n";
 #endif
 		return button; // Done!
 	}
 
 	//Analogous to the above but takes in an ASCII character instead of a numeral, as a fancier interface
 	//Note that this is how you get press to *return* ASCII, as well.
-	char pressASCII(char ascii)
+	char pressASCII(const char ascii)
 	{
 		if (ascii > 64 && ascii < 91) // Capital letter
 		{
@@ -221,7 +233,8 @@ public:
 		return ret;
 	}
 
-	Enigma() // Creating an enigma machine with no parameters, so making a random one.
+	// Creating an enigma machine with no parameters, so making a random one.
+	Enigma() 
 	{
 		r0 = rand() % 5; // Some random number between 0 and 4
 		do {
@@ -236,7 +249,8 @@ public:
 		offset[2] = rand() % 26;
 	}
 
-	Enigma(int rot1, int rot2, int rot3, size_t o1, size_t o2, size_t o3) // Creating an engima machine with a VERY SPECIFIC configuration. Note that it lacks plugboard configs at the moment.
+	// Creating an engima machine with a VERY SPECIFIC configuration. Note that it lacks plugboard configs at the moment.
+	Enigma(int rot1, int rot2, int rot3, size_t o1, size_t o2, size_t o3) 
 		:r0(rot1)
 		,r1(rot2)
 		,r2(rot3)
@@ -250,7 +264,7 @@ int main(int argc, char** argv) // Later on we'll be able to take arguments; rig
 {
 	Enigma eng(0,1,2,25,0,0);
 
-	std::cout << eng.pressASCII("AA");
+	std::cout << eng.pressASCII("AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA");
 
 	return 0;
 }
